@@ -10,31 +10,7 @@ WHITE = (255, 255, 255)
 # depth - how far down our decision tree we want to go. We'll start at n and we'll count down to zero.
 # max_player - a boolean that determines if the player is trying to minimize or maximize the score.
 def minimax(current_board, depth, max_player):
-  if depth == 0 or current_board == None or current_board.winner() != None:
     return current_board.evaluate(), current_board
-
-  if max_player:
-    maxEval = float('-inf')
-    best_move = None
-    for move in get_all_moves(current_board, WHITE):
-      evaluation = minimax(move, depth-1, False)[0]
-      maxEval = max(maxEval, evaluation)
-      if maxEval == evaluation:
-        best_move = move
-
-    return maxEval, best_move
-
-  else:
-    minEval = float('inf')
-    best_move = None
-    for move in get_all_moves(current_board, RED):
-      evaluation = minimax(move, depth-1, True)[0]
-      minEval = min(minEval, evaluation)
-      if minEval == evaluation:
-        best_move = move
-
-    return minEval, best_move
-
 
 
 # This function will simulate a move when the algorithm explores a branch of the decision tree.
